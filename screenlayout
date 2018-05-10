@@ -1,0 +1,19 @@
+select 0
+title instance
+screen -t source    1
+screen -t sql       2
+screen -t robo      3
+screen -t root      4
+screen -t nginx     5
+screen -t messages  6
+
+select 1
+split -v
+focus
+resize 30%
+select 6
+split
+focus
+resize 30%
+select 5
+focus

@@ -1,0 +1,11 @@
+snippet mura_errorlog "PHP: Debug no syslog"
+	error_log(sprintf("%s:%s  (%s)", __FILE__, __LINE__, ${1:0}));
+snippet mura_backtrace "PHP: Backtrace"
+	\$__qweasd = debug_backtrace(); foreach (\$__qweasd as \$__qweas){error_log(sprintf("%s:%d", \$__qweas['file'],	\$__qweas['line']));}
+snippet mura_array "PHP: Array no syslog"
+	foreach (explode("\n", print_r(${1:[]}, 1)) as \$__qweasd){error_log(\$__qweasd);}
+snippet mura_sql "PHP: SQL no syslog"
+	foreach (explode("\n", print_r(str_split(${1:""}, 50), 1)) as \$__qweasd){error_log(\$__qweasd);}
+snippet mura_memory "PHP: Uso de memoria no syslog"
+	error_log(sprintf("%s:%s  (Mem: %skb)", __FILE__, __LINE__, floor(memory_get_usage()/1024)));
+

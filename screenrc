@@ -1,0 +1,15 @@
+term xterm-256color
+vbell off
+
+defscrollback 30000
+
+backtick 101 5 1 /bin/cat /proc/loadavg
+
+hardstatus alwayslastline 
+hardstatus string '%{= d} %{w}%S %{= d}%-w%{= r}[%{= W}%n %t%{= r}]%{= d}%+w %-= %{R} %101`%{W}| %{G} %H%{W}|%D %M %d %Y%{= c} %C%A%{-}'
+bind h focus left
+bind j focus down
+bind k focus up
+bind l focus right
+bind L source .screenlayout
+bind R source .screenlayoutrestore
