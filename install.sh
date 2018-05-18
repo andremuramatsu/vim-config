@@ -24,7 +24,7 @@ function gitclone {
     TGT=$3
 
     if [ -z "${TGT}" ]; then
-        TGT="~/.vim/bundle/${PKG}"
+        TGT="/home/${USER}/.vim/bundle/${PKG}"
     fi
 
     echo_info "Testing vim package ${PKG} ${TGT}"
@@ -76,7 +76,7 @@ if [ $(pear list -c pear.phpmd.org|grep PHP_PMD|wc -l) != "1" ]; then
 
     ${CMD}
     if [ ! $? -eq 0 ]; then
-        echo_error"You must install PHP_CodeSniffer as root before continue"
+        echo_error "You must install PHP_CodeSniffer as root before continue"
         echo_warn "$CMD"
         exit 1
     fi
