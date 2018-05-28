@@ -57,6 +57,20 @@ autocmd Filetype html set fileencoding=iso-8859-1
 " Snipmate doesn't works if set paste is enabled
 set nopaste
 
+" vim-syntastic extras
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let phpcsstd = $HOME . "/source/phpcs.xml"
+if filereadable(phpcsstd)
+    let g:syntastic_php_phpcs_args = '--standard=' . phpcsstd
+endif
+
 " Plugins keyboard shortcuts
 map <F9> :TagbarToggle<CR>
 vmap <C-i> :Tabularize /=.<CR>
