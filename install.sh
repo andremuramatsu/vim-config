@@ -53,10 +53,24 @@ for DEP in $DEPENDENCIES; do
         exit 1
     fi
 done
+
+HAS_SUDO=1
+if [ -z $(which sudo) ]; then
+    HAS_SUDO=0
+    while [ "${CONTINUE}" != "y" ] && [ "${CONTINUE}" != "n" ]; do
+        echo_warn "There is no sudo command. Continue? (y/n) [y]: "
+        read CONTINUE
+    done
+
+    if [ "${CONTINUE}" == "n" ]; then
+        exit 1
+    fi
+fi
+
 echo_success "SO dependencies ok"
 
 # PHPMD and PHPCS
-if [ $(pear list -c pear.php.net |grep PHP_CodeSniffer|wc -l) != "1" ]; then
+if [ $HAS_SUDO -eq 1 ] && [ $(pear list -c pear.php.net |grep PHP_CodeSniffer|wc -l) != "1" ]; then
     CMD="sudo pear install PHP_CodeSniffer"
     
     ${CMD}
@@ -67,7 +81,7 @@ if [ $(pear list -c pear.php.net |grep PHP_CodeSniffer|wc -l) != "1" ]; then
     fi
 fi
 
-if [ $(pear list -c pear.phpmd.org|grep PHP_PMD|wc -l) != "1" ]; then
+if [ $HAS_SUDO -eq 1 ] && [ $(pear list -c pear.phpmd.org|grep PHP_PMD|wc -l) != "1" ]; then
     CMD="sudo pear channel-discover pear.pdepend.org"
     CMD="${CMD} && sudo pear channel-discover pear.phpmd.org"
     CMD="${CMD} && sudo pear channel-update pear.pdepend.org"
@@ -114,6 +128,7 @@ gitclone 'https://github.com/honza/vim-snippets.git' vim-snippets
 gitclone 'https://github.com/terryma/vim-multiple-cursors.git' vim-multiple-cursors
 gitclone 'https://github.com/bpearson/vim-phpcs.git' vim-phpcs
 gitclone 'https://github.com/vim-syntastic/syntastic.git' vim-syntastic
+gitclone 'https://github.com/freitass/todo.txt-vim.git' todo.txt-vim
 
 # Copying rc file
 cp vimrc ~/.vimrc
