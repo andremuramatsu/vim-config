@@ -132,9 +132,6 @@ gitclone 'https://github.com/freitass/todo.txt-vim.git' todo.txt-vim
 
 # Copying rc file
 cp vimrc ~/.vimrc
-cp screenrc ~/.screenrc
-cp screenlayout ~/.screenlayout
-cp screenlayoutrestore ~/.screenlayoutrestore
 
 # Copying personal snippets
 mkdir -p ~/.vim/bundle/vim-snippets/snippets/php/
